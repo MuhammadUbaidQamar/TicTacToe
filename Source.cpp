@@ -14,6 +14,7 @@ int main() {
 	char changeName; // y/n
 	int winsP1 = 0;
 	int winsP2 = 0;
+	bool nameValidation;
 
 	int turn_player = 0; // 0:P1, 1:P2
 	int turn;
@@ -25,8 +26,17 @@ int main() {
 		system("cls");
 		cout << "********* Tic Tac Toe *********\n";
 		cout << "Enter name of Player 1(X): ";
-		cin.ignore();
-		cin.getline(nameP1, NameSize);
+		/*
+		do {
+			cin.getline(nameP1, NameSize);
+			if (cin.fail()) {
+				cout << "Enter a valid name\n";
+				nameValidation = false;
+				continue;
+			}
+			nameValidation = true;
+		} while (!nameValidation);
+		*/
 		cout << "Enter name of Player 2(O): ";
 		cin.getline(nameP2, NameSize);
 		cout << "******************************\n";
@@ -103,8 +113,14 @@ int main() {
 
 		cout << "Do you want to change player name? (y/n) ";
 		cin >> changeName;
+
+		cin.ignore();
 	} while (changeName == 'y');
 
+	system("cls");
+	cout << "********* Tic Tac Toe *********\n";
+	cout << "Wins Player 1 (" << nameP1 << "): " << winsP1 << '\n';
+	cout << "Wins Player 2 (" << nameP2 << "): " << winsP2 << '\n';
 	cout << "******************************\n";
 	cout << "*     Thanks for playing     *\n";
 	cout << "******************************\n";
@@ -165,10 +181,10 @@ int CheckWinner(char board[]) {
 	}
 	// check '/'
 	if (board[2] == board[4] && board[2] == board[6]) {
-		if (board[0] == 'X') {
+		if (board[2] == 'X') {
 			return 1;
 		}
-		else if (board[0] == 'O') {
+		else if (board[2] == 'O') {
 			return 2;
 		}
 	}
